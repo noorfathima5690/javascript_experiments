@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Experiments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul, p ul{
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .instructions {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #007BFF;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Experiments</h1>
+
+    <div class="instructions">
+        <p>To view the JavaScript output for each experiment, open the browser's developer tools (usually F12 or right-click -> Inspect) and check the "Console" tab.</p>
+    </div>
+    <p>
+        <ul>
+            <li>* Javascript is single-threaded language, which means that it can execute only one task at a time. It has a single call stack, which is used to execute the code sequentially.</li>
+            <li>* Javascript is synchronous, which means that it will execute the code line by line, and it will wait for the current line to be executed before moving to the next line.</li>
+            <li>* CallStack  is a mechanism how operations are performed in a LIFO (Last In First Out) manner. It is used to keep track of the function calls in the program. Functions invokes new execution context and added to call stack.</li>
+            <li>* Js relys on event loop and callback queue to handle the asynchronous operations. For multti threading js utlizes web workers. to run code parallelly. without blocking the main thread.</li>
+            <li>* Event loop is a mechanism that allows the javascript runtime to perform non-blocking I/O operations. It is responsible for handling the asynchronous operations in javascript.</li>
+            <li>* Event loops get trigger on invocation of the callback function, User interaction, network request, timer, etc. It keeps checking  id call stack is empty it looks for event queue and push the callback function to call stack.</li>
+            <li>* Event Loops allow js to perform task without freezing the entire application. It is responsible for handling the asynchronous operations in javascript.</li>
+            <li>* Javascript is loosely typed language, which means that you don't have to specify the data type of the variable when declaring it</li>
+            <li>* The data type of the variable is determined at runtime based on the value assigned to it. (Less Strict)</li>
+        </ul>
+    </p>
+    <script>
+        //Lets see some example for synchronous and asynchronous operations
+        // Synchronous operation
+        function firstOperation() {
+            console.log('First Operation');
+            secondOperation();
+        }
+
+        function secondOperation() {
+            console.log('Second Operation');
+            thirdOperation();
+        }
+
+        function thirdOperation() {
+            console.log('Third Operation');
+            console.log('All Operations are completed');
+        }
+
+        firstOperation();
+        //Output
+        // First Operation
+        // Second Operation
+        // Third Operation
+        // All Operations are completed
+
+        //Call Stack
+
+        //thirdOperation() - once completed it will be removed from call stack
+        //Second Operation 
+        //firstOperation()
+    </script>
+</body>
+</html>

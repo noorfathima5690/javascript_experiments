@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Experiments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul, p ul{
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .instructions {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #007BFF;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Experiments</h1>
+
+    <div class="instructions">
+        <p>To view the JavaScript output for each experiment, open the browser's developer tools (usually F12 or right-click -> Inspect) and check the "Console" tab.</p>
+        <p><a href="index.html"> Go Back Listing Page </a></p>
+    </div>
+    <script>
+//Destructuring is a way to extract values from objects and arrays and assign into variables in a more concise way.
+//Destructuring  can used to write cleaner and more readable code.
+//Easy to extract value from array or object
+//Can used working with array and object
+//When you want to handle functions elegantly
+
+//Let's see how destructuring works with arrays, objects and functions.
+//array destructuring
+//object destructuring
+//function destructuring
+
+//Array destructuring
+const numbers = [1, 2, 3, 4, 5];
+const [first, second, third] = numbers;//first=1, second=2, third=3
+console.log(first, second, third);//1 2 3
+
+//Skipping elements in array destructuring (comma's are needed to skip elements)
+const [one, , three] = numbers;//one=1, three=3
+console.log(one, three);//1 3
+
+//Rest operator in array destructuring
+let array = [1,2,3,4,5,6];
+const [f, ...other] = array;
+console.log(f);
+console.log(other);
+
+//nested array destructuring
+const nestedArray = [1, 2, [3, 4]];
+const [i, j, [k, l]] = nestedArray;
+console.log(i, j, k, l);//1 2 3 4
+
+
+//Object destructuring
+const person = {
+    name: 'John',
+    age: 25,
+    location: 'USA'
+};
+
+const {name, age, location} = person;
+console.log(name, age, location);//John 25 USA
+
+//Renaming destructured variables
+const {name: n, location: locn} = person;
+console.log(n, locn);//John USA
+
+//default values in object destructuring
+const {name: nm, age: ag, location: loc, job='Software Engineer'} = person;
+console.log(nm, ag, loc, job);//John 25 USA Software Engineer
+
+getPerson(name, name,age);//John Doe 25
+
+//Function destructuring
+function getPerson( firstName, lastName, age) {
+   console.log(`lets see what is ${firstName} ${lastName} ${age}`);
+}
+
+
+//Passing object to function
+const person1 = {
+    firstName: 'John',
+    lastName: 'Doe',
+    age: 25
+};
+
+getPerson1(person1);//John Doe 25
+
+function getPerson1({firstName, lastName, age}) {
+    console.log(firstName, lastName, age);
+}
+
+
+//Ussing rest operator in object destructuring
+const person2 = {
+    firstName: 'John',
+    lastName: 'Doe',
+    age: 25,
+    location: 'USA'
+};
+
+function getPerson2({firstName, lastName, ...rest}) {
+    console.log(firstName, lastName, rest);
+}
+</script>
+</body>
+</html>

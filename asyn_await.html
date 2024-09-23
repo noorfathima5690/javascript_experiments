@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Experiments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul, p ul{
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .instructions {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #007BFF;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Experiments</h1>
+
+    <div class="instructions">
+        <p>To view the JavaScript output for each experiment, open the browser's developer tools (usually F12 or right-click -> Inspect) and check the "Console" tab.</p>
+        <p><a href="index.html"> Go Back Listing Page </a></p>
+    </div>
+    <h2> Async Await</h2>
+<script>
+    //Async/Await is a new way to write asynchronous code. 
+    //Async/Await is built on top of promises and non-blocking.
+    //Async/Await is a way to write asynchronous code that is more readable and maintainable.
+    //Async/Await is a special syntax to work with promises in a more comfortable fashion.
+    //Async/Await is a new way to write asynchronous code. 
+    //Async/Await is built on top of promises and non-blocking.
+    //Async/Await is a way to write asynchronous code that is more readable and maintainable.
+    //Async/Await is a special syntax to work with promises in a more comfortable fashion.
+
+    //Example 1  -  Async/Await defined with resolve and reject
+    async function myFirstAsyncFunction() {
+        //console.log("==========This console will be printed first as my promised is initaited==========");
+        return await "Async/Await is fulfilled";
+    }
+
+    let myFirstAsync = myFirstAsyncFunction();
+    // console.log(myFirstAsync) // promise pending
+    // myFirstAsync.then((data) => {
+    //     console.log("==========This console will be printed when promise is fulfilled==========", data);
+    //     console.log(data);
+    // }).catch((error) => {
+    //     console.log("==========This console will be printed when promise is rejected==========", error);
+    //     console.log(error);
+    // });
+
+
+    function one() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve("Promise is fulfilled of one");
+            }, 2000);
+        });
+    }
+
+
+    function two() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve("Promise is fulfilled of two");
+            }, 1000);
+        });
+    }
+
+
+    async function all() {
+        console.log("==========This console will be printed first as all promised is initaited==========");
+        let dataOne = await one();
+        let dataTwo = await two();
+        console.log("==========This console will be printed when all promises are fulfilled After dataone and datatwo==========");
+        return [dataOne, dataTwo];
+    }
+
+    all().then((data) => {
+        console.log("==========This console will be printed when all promises are fulfilled==========", data);
+        console.log(data);
+    }).catch((error) => {
+        console.log("==========This console will be printed when any promise is rejected==========", error);
+        console.log(error);
+    });
+
+
+    console.log("==========This console will be printed first==========");
+
+</script>
+</body>
+</html>

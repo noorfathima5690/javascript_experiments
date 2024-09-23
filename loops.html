@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Experiments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul, p ul{
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .instructions {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #007BFF;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Experiments</h1>
+
+    <div class="instructions">
+        <p>To view the JavaScript output for each experiment, open the browser's developer tools (usually F12 or right-click -> Inspect) and check the "Console" tab.</p>
+        <p><a href="index.html"> Go Back Listing Page </a></p>
+    </div>
+    <script>
+//Let's see how we can use loops to iterate over arrays and objects.
+/**
+ * 1. For loop
+ * 2. ForEach loop
+ * 3. ForIn loop
+ * 4. ForOf loop
+ * 5. While loop
+ * 6. DoWhile loop
+ * 7. Break and Continue statements
+ */
+
+
+//1. For loop
+//The for loop is used to iterate over arrays and objects.
+//Syntax:
+// for (initialization; condition; increment/decrement) {
+//     //code to be executed
+// }
+
+//Example 1: Iterating over an array using for loop (Mostly used loop array)
+let fruits = ['Apple', 'Banana', 'Mango', 'Orange'];
+for (let i = 0; i < fruits.length; i++) {
+    console.log(fruits[i]);
+}
+
+
+//2. ForEach loop (Mostly used loop array)
+//The forEach loop is used to iterate over arrays.
+//Syntax:
+// array.forEach(function(currentValue, index, arr), thisValue)
+// currentValue: The value of the current element
+// index: The array index of the current element
+// arr: The array object the current element belongs to
+// thisValue: A value to be passed to the function to be used as its "this" value
+
+//Example 2: Iterating over an array using forEach loop
+fruits.forEach(function (fruit) {
+    console.log(fruit);
+});
+
+fruits.forEach((fruit, i) => {
+    console.log(i, fruit);
+});
+
+
+//3. ForIn loop (Mostly used loop object with key)
+//The for...in loop is used to iterate over an object.
+//Syntax:
+// for (variable in object) {
+//     //code to be executed
+// }
+
+for (let key in fruits) {
+    console.log(key, fruits[key]);
+}
+
+const arr = [1, 2, 3, 4, 5];
+
+for (let key in arr) {
+    console.log(key, arr[key]);
+}
+
+
+
+//4. ForOf loop (Mostly used loop array / object with value)
+//The for...of loop is used to iterate over an array or string.
+//Syntax:
+// for (variable of object) {
+//     //code to be executed
+// }
+
+
+//Example 4: Iterating over an array using for...of loop
+for (let fruit of fruits) {
+    console.log(fruit);
+}
+
+for (let value of arr) {
+    console.log(value);
+}
+
+
+//5. While loop
+//The while loop is used to execute a block of code as long as the condition is true.
+//Syntax:
+// while (condition) {
+//     //code to be executed
+// }
+
+//Example 5: Using while loop
+let i = 0;
+while (i < fruits.length) {
+    console.log(fruits[i]);
+    i++;
+}
+
+
+//6. DoWhile loop
+//The do...while loop is used to execute a block of code at least once, and then repeatedly execute the block of code as long as the condition is true.
+//Syntax:
+// do {
+//     //code to be executed
+// } while (condition);
+
+//Example 6: Using do...while loop
+let j = 0;
+do {
+    console.log(fruits[j]);
+    j++;
+} while (j < fruits.length);
+
+
+
+//7. Break and Continue statements
+//The break statement is used to terminate the loop.
+//The continue statement is used to skip the current iteration and continue with the next iteration.
+
+//Example 7: Using break and continue statements
+for (let i = 0; i < fruits.length; i++) {
+    if (i === 2) {
+        break;
+    }
+    console.log(fruits[i]);
+}
+
+const loopedArray = [];
+for (let i = 0; i < fruits.length; i++) {
+    if (i === 2) {
+        continue;
+    }
+    console.log(fruits[i]);
+    loopedArray.push(fruits[i]);
+}
+console.log(loopedArray);//['Apple', 'Banana', 'Orange']
+
+
+/**
+ * | Loop Type | Use Case                          | Syntax Example                                      | Notes                                                                 |
+ * |-----------|-----------------------------------|-----------------------------------------------------|-----------------------------------------------------------------------|
+ * | for       | General purpose, arrays, objects  | for (let i = 0; i < array.length; i++) { ... }      | Most flexible, can be used with any iterable, allows full control     |
+ * | forEach   | Arrays                            | array.forEach((item, index) => { ... })             | Simplifies array iteration, no way to break out of loop               |
+ * | for...in  | Objects (keys)                    | for (let key in object) { ... }                     | Iterates over enumerable properties, not recommended for arrays       |
+ * | for...of  | Arrays, strings, iterables        | for (let item of iterable) { ... }                  | Simplifies iteration over iterable values, can use break/continue     |
+ */
+
+</script>
+</body>
+</html>
+
+

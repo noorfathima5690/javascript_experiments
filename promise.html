@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Experiments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul, p ul{
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .instructions {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #007BFF;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Experiments</h1>
+
+    <div class="instructions">
+        <p>To view the JavaScript output for each experiment, open the browser's developer tools (usually F12 or right-click -> Inspect) and check the "Console" tab.</p>
+        <p><a href="index.html"> Go Back Listing Page </a></p>
+    </div>
+    <h2> Promises Examples</h2>
+<script>
+    //Let's see how promises work in JavaScript.
+    //Promises are js mechanism to handle asynchronous operations. 
+    //Promises are js methods that represent the eventual completion or failure of an asynchronous operation.
+    //Promise need 2 arguments resolve and reject.
+
+    //Example 1  -  Promise defined with resolve and reject
+    new Promise((resolve, reject) => {
+        console.log("==========This console will be printed first==========");
+        resolve("Promise is fulfilled");
+        //reject("Promise is rejected");
+    });
+
+    //Example 2  -  Assigning promise to a variable
+    let myFirstPromise = new Promise((resolve, reject) => {
+        console.log("==========This console will be printed first as my promised is initaited==========");
+        resolve("Promise is fulfilled of myFirstPromise");
+        //reject("Promise is rejected");
+    });
+
+    myFirstPromise.then((data) => {
+        console.log("==========This console will be printed when promise is fulfilled==========",data);
+        console.log(data);
+    }).catch((x) => {
+        console.log("==========This console will be printed when promise is rejected==========",error);
+        console.log(error);
+    });
+    console.log("==========This console will be printed second ==========");
+
+    //Let's see how life cycle of promise works
+
+    function one() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve("Promise is fulfilled of one");
+            }, 2000);
+        });
+    }
+
+    function two() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve("Promise is fulfilled of two");
+            }, 1000);
+        });
+    }
+
+    //Promise.all() method returns a single Promise that resolves when all of the promises passed as an iterable have resolved or when the iterable contains no promises.
+    Promise.all([one(), two()]).then((data) => {
+        console.log("==========This console will be printed when all promises are fulfilled==========",data);
+        console.log(data);
+    }).catch((error) => {
+        console.log("==========This console will be printed when any promise is rejected==========",error);
+        console.log(error);
+    });
+
+
+    //only cares about the first successful resolution
+    Promise.any([one(), two()]).then((data) => {
+        console.log("==========This console will be printed when any promise is fulfilled==========",data);
+        console.log(data);
+    }).catch((error) => {
+        console.log("==========This console will be printed when all promises are rejected==========",error);
+        console.log(error);
+    });
+
+    //Any of the promises is settled (fulfilled or rejected), either its resolved or rejected
+    Promise.race([one(), two()]).then((data) => {
+        console.log("==========This console will be printed when any promise is fulfilled In race method==========",data);
+        console.log(data);
+    }).catch((error) => {
+        console.log("==========This console will be printed when any promise is rejected==========",error);
+        console.log(error);
+    });
+
+    //Promise.allSettled() method returns a promise that resolves after all of the given promises have either resolved or rejected, 
+    //with an array of objects that each describes the outcome of each promise.
+    Promise.allSettled([one(), two()]).then((data) => {
+        console.log("==========This console will be printed when all promises are settled==========",data);
+        console.log(data);
+    }).catch((error) => {
+        console.log("==========This console will be printed when all promises are rejected==========",error);
+        console.log(error);
+    });
+
+
+    //Chaining of promises
+    function three() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve("Promise is fulfilled of three");
+            }, 3000);
+        });
+    }
+
+    function four() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve("Promise is fulfilled of four");
+            }, 4000);
+        });
+    }
+
+    one().then((data) => {
+        console.log("==========This console will be printed when promise one is fulfilled==========",data);
+        console.log(data);
+        return two();
+    }).then((data) => {
+        console.log("==========This console will be printed when promise two is fulfilled==========",data);
+        console.log(data);
+        return three();
+    }).then((data) => {
+        console.log("==========This console will be printed when promise three is fulfilled==========",data);
+        console.log(data);
+        return four();
+    }).then((data) => {
+        console.log("==========This console will be printed when promise four is fulfilled==========",data);
+        console.log(data);
+    }).catch((error) => {
+        console.log("==========This console will be printed when any promise is rejected==========",error);
+        console.log(error);
+    });
+
+
+</script>
+</body>
+</html>

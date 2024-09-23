@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Experiments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul, p ul{
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .instructions {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #007BFF;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Experiments</h1>
+
+    <div class="instructions">
+        <p>To view the JavaScript output for each experiment, open the browser's developer tools (usually F12 or right-click -> Inspect) and check the "Console" tab.</p>
+        <p><a href="index.html"> Go Back Listing Page </a></p>
+    </div>
+    <script>
+/**
+ * We have 2 types of data types in JavaScript:
+ * 1. Primitive data types
+ * 2. Non-primitive data types (also known as reference data types)
+ */
+
+
+/**
+ * Primitive data types: These are the data types that store single values (Values doesn't have prototype method). There are 7 types of primitive
+ * 1. Number
+ * 2. String
+ * 3. Boolean
+ * 4. Undefined
+ * 5. Null
+ * 6. Symbol - Used for creating unique keys for objects (Creates unique data index for objects)
+ * 7. BigInt
+ * 
+ * Primitive data types are immutable, which means that they cannot be altered once they are created.
+ * Data is stored by value in memory
+ */
+
+//Example
+
+let newString = "Hello World";
+console.log(newString.toUpperCase()); //Output: HELLO WORLD
+console.log(newString); //Output: Hello World
+
+let key1 = Symbol();
+let key2 = Symbol();
+console.log(key1 === key2); //Output: false
+
+
+/**
+ * Non-primitive data types: These are the data types that store multiple values in a single variable. There are 3 types of non-primitive data types:
+ * 1. Object
+ * 2. Array
+ * 3. Function
+ * 
+ * Non-primitive data types are mutable, which means that they can be altered after they are created.
+ * Daa is stored by reference in memory, Any changes made to the reference will affect the original value.
+ */
+//Example
+
+let fruits = ['Apple', 'Banana', 'Mango'];
+let newFruits = fruits;
+newFruits.push('Orange');
+console.log(fruits); //Output: ['Apple', 'Banana', 'Mango', 'Orange']
+</script>
+</body>
+</html>

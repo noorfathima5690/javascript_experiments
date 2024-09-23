@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Experiments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul, p ul{
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .instructions {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #007BFF;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Experiments</h1>
+
+    <div class="instructions">
+        <p>To view the JavaScript output for each experiment, open the browser's developer tools (usually F12 or right-click -> Inspect) and check the "Console" tab.</p>
+        <p><a href="index.html"> Go Back Listing Page </a></p>
+    </div>
+<script>
+//Array's can be looped in 4 ways:
+
+//1. forEach loop
+//2. for loop
+//3. for...in loop
+//4. for...of loop 
+
+/**
+ * Array.from() method creates a new, shallow-copied Array instance from an array-like or iterable object.
+ * Convert string to array similar to split()
+ * Similar like map you can perform some operation on each element of the array
+ */
+
+//Example 1: Convert string to array using Array.from() method
+const str = 'Hello World';
+const arr = Array.from(str);
+console.log(arr); //Output: ['H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd']
+
+const splittedArr = str.split("");
+console.log(splittedArr); //Output: ['H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd']
+
+const  mappedArr = Array.from(str, x => x + '!');
+console.log(mappedArr); //Output: ['H!', 'e!', 'l!', 'l!', 'o!', ' !', 'W!', 'o!', 'r!', 'l!', 'd!']
+
+const mappedArr2 = Array.from ([1, 2, 3], x => x * 2);
+console.log(mappedArr2); //Output: [2, 4, 6]
+
+/**
+ * Array.of() method creates a new Array instance from a variable number of arguments, regardless of number or type of the arguments.
+ */
+
+const arr3 = Array.of(1, 2, 3, 4, 5);
+console.log(arr3); //Output: [1, 2, 3, 4, 5]
+
+const arr4 = Array.of(5);
+console.log(arr4); //Output: [5]
+
+const arr5 = Array(7)
+console.log(arr5); //Output: [ <7 empty items> ]
+
+
+/*
+ * Array.fill() method fills all the elements of an array from a start index to an end index with a static value.
+ * This mthod need 3 arguments: value, start index and end index
+ * Similar to slice() method, it does not change the original array
+ */
+
+const arr6 = [1, 2, 3, 4, 5];
+arr6.fill(0);
+console.log(arr6); //Output: [0, 0, 0, 0, 0]
+
+const arr7 = [1, 2, 3, 4, 5];
+arr7.fill(0, 1, 3);
+
+//Let's how splice() method works, This expects 3 arguments: start index, delete count and value to be inserted
+const arr8 = [1, 2, 3, 4, 5];
+arr8.splice(1, 3, 0);
+console.log(arr8); //Output: [1, 0, 5]
+
+
+/**
+ * Array.find() method returns the value of the first element in the array that satisfies the provided testing function.
+ * Otherwise undefined is returned.
+ * 3 arguments: element, index, array
+ */
+
+let cities = ['Delhi', 'Mumbai', 'Bangalore', 'Chennai', 'Kolkata'];
+const city = cities.find(city => city === 'Mumbai');
+
+console.log(city); //Output: Mumbai
+
+const city2 = cities.find(city=> {
+    return city === 'pune';
+})
+console.log(city2); //Output: undefined
+
+
+/**
+ * Array.findIndex() method returns the index of the first element in the array that satisfies the provided testing function.
+ * Otherwise, it returns -1, indicating that no element passed the test.
+ */
+
+let cities2 = ['Delhi', 'Mumbai', 'Bangalore', 'Chennai', 'Kolkata'];   
+const cityIndex = cities2.findIndex(city => city === 'Mumbai');
+console.log(cityIndex); //Output: 1
+
+
+/**
+ * We have alot of methods to manipulate the array elements
+ * 1. push() - add element at the end of the array
+ * 2. pop() - remove element from the end of the array
+ * 3. shift() - remove the first element of the array
+ * 4. unshift() - add element at the beginning of the array
+ * 5. splice() - remove or replace elements from the array
+ * 6. slice() - returns the selected elements in an array, as a new array object
+ * 7. concat() - merge two or more arrays
+ * 8. reverse() - reverse the array
+ * 9. sort() - sort the array
+ * 10. indexOf() - search the array for an element and returns its position
+ * 11. lastIndexOf() - search the array for an element, starting at the end, and returns its position
+ * 12. includes() - check if an element is present in the array
+ * 13. join() - join all elements of the array into a string
+ * 14. toString() - convert the array to a string
+ * 15. filter() - create a new array with elements that pass the test
+ * 16. map() - create a new array with the result of calling a function for each array element
+ * 17. reduce() - reduce the array to a single value
+ * 18. some() - check if some array elements pass a test
+ * 19. every() - check if all array elements pass a test
+ */
+</script>
+</body>
+</html>

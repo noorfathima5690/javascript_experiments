@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Experiments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul, p ul{
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .instructions {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #007BFF;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Experiments</h1>
+    <div class="instructions">
+        <p>To view the JavaScript output for each experiment, open the browser's developer tools (usually F12 or right-click -> Inspect) and check the "Console" tab.</p>
+        <p><a href="index.html"> Go Back Listing Page </a></p>
+    </div>
+<script>
+    // Variables: var, let, const
+
+    // var : declation of variable & it's scope
+    var a = 10;
+
+    const varScope = () => {
+        var b = 20;
+        console.log(b); // 20 
+        console.log(a); // 10
+    }
+
+    console.log(a); // 10
+    varScope();
+    console.log(b); // ReferenceError: b is not defined
+
+
+    // let : declation of variable & it's scope
+    let c = 30;
+
+    const letScope = () => {
+        let d = 40;
+        console.log(d); // 40 
+        console.log(c); // 30
+    }
+
+    console.log(c); // 30
+    letScope();
+    console.log(d); // ReferenceError: d is not defined
+
+    // const : declation of variable & it's scope
+
+    const e = 50;
+
+    const constScope = () => {
+        const f = 60;
+        console.log(f); // 60 
+        console.log(e); // 50
+    }
+
+    console.log(e); // 50
+    constScope();
+    console.log(f); // ReferenceError: f is not defined
+
+
+
+    //let see the hoisting of var, let, const
+
+    // Hoiasting of var
+
+    console.log(g); // ReferenceError: f is not defined
+
+    console.log(h); // undefined, later it will be assigned to 80
+    var h;
+    var h=80; // you can re-declare & re-assign the var variable  
+
+    // Hoiasting of let
+    console.log(i); // ReferenceError: i is not defined
+
+    console.log(j); // ReferenceError: j is not defined
+    let j;
+    j=90; // you can re-assign the let variable but you can't re-declare it, meaning you can't use let j=90; but you can use j=100;
+
+
+    // Hoiasting of const
+    console.log(k); // ReferenceError: k is not defined
+    // const k; SyntaxError: Missing initializer in const declaration, const variable should be initialized at the time of declaration const k=100;
+    const k = 100;
+    k=200; // TypeError: Assignment to constant variable, const variable can't be re-assigned, meaning you can't assign new value to const variable but can change the value if it's an object or array. const k=[1,2,3]; k.push(4);
+
+
+    // let's see the hoisting of function
+    greetMe();
+
+    var greetMe = function() {
+        console.log('Hello, I am from greetMe function');
+    }
+
+    // TypeError: greetMe is not a function because var greetMe is hoisted but it's value is undefined, so it's not a function
+
+    function greetMe() {
+        console.log('Hello, I am from greetYou function');
+    }
+
+    greetYou(); //syntax error : Identifier 'greetYou' has already been declared, same for both let & const
+
+    let greetYou = function() {    
+        console.log('Hello, I am from sayHello1 function');
+    }
+
+    // Var vs Let vs Const
+
+    // | Feature                     | var                                                  | let                                                  | const                                                |
+    // |-----------------------------|------------------------------------------------------|------------------------------------------------------|------------------------------------------------------|
+    // | Scope                       | Function scope                                       | Block scope                                          | Block scope                                          |
+    // | Hoisting                    | Yes                                                  | No                                                   | No                                                   |
+    // | Re-declaration              | Yes                                                  | No                                                   | No                                                   |
+    // | Re-assignment               | Yes                                                  | Yes                                                  | No                                                   |
+    // | Temporal Dead Zone (TDZ)    | No                                                   | Yes                                                  | Yes                                                  |
+    // | Initial Value               | Optional                                             | Optional                                             | Required                                             |
+    // | Use Case                    | Legacy code, global variables                        | Loop counters, block-scoped variables                | Constants, configuration values 
+
+</script>|
+</body>
+</html>
+
+
+
+

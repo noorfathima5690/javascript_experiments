@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Experiments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul, p ul{
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .instructions {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #007BFF;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Experiments</h1>
+
+    <div class="instructions">
+        <p>To view the JavaScript output for each experiment, open the browser's developer tools (usually F12 or right-click -> Inspect) and check the "Console" tab.</p>
+        <p><a href="index.html"> Go Back Listing Page </a></p>
+    </div>
+    <script>
+//Let's see how default parameters work in ES6
+
+// Default parameters are used to assign default values to function parameters if no value is passed to the function. 
+//Default parameters are used to avoid undefined values in function parameters.
+
+//Js doesn't throw an error if you don't pass a value to a function parameter. As a result, the parameter value is undefined.
+//Js allow you to assign more than defined parameters to a function. The extra parameters are ignored by the function.
+
+const defaultParameters = (a = 1, b = 2) => {
+    console.log(a + b);
+}
+
+defaultParameters(); // 3
+defaultParameters(2); // 4
+defaultParameters(2, 3); // 5 -> Default parameters are used to assign default values to function parameters if no value is passed to the function, Meaning overrides the default value
+defaultParameters(2, 3, 4); // 5 -> Js doesn't throw an error if you pass more than defined parameters to a function. The extra parameters are ignored by the function.
+
+//Rest operator is used to pass a variable number of arguments to a function.
+
+//If need to pass any number of arguments to a function, you can use the rest operator. The rest operator is used to pass a variable number of arguments to a function.
+function  findHighest(...numbers) {
+    console.log(numbers);
+    return Math.max(...numbers);
+}
+
+console.log(findHighest(1, 2, 3, 4, 5)); // 5 -> Rest operator is used to pass a variable number of arguments to a function. The rest operator is used to pass a variable number of arguments to a function.
+
+//Spread operator is opposite of rest operator. It is aleady an array and we want to pass it to a function that accepts a variable number of arguments.
+
+
+function sum(a, b, c, d) {
+    return a + b + c + d;
+}
+
+let numbers = [1, 2, 3, 4];
+console.log(sum(numbers)); // 1,2,3,4undefinedundefinedundefined -> It will not work as expected because it could be consider first element as string.
+
+
+//To pass an array to a function that accepts a variable number of arguments, you can use the spread operator. The spread operator is used to spread an array into individual elements.
+config.log(sum(...numbers)); // 10 -> Spread operator is used to pass an array to a function that accepts a variable number of arguments. The spread operator is used to spread an array into individual elements.
+
+//Difference between rest and spread operator
+
+//The rest operator is used to pass a variable number of arguments to a function.
+//The spread operator is used to spread an array into individual elements.
+
+//The rest & spread operator looks similar but they are serve different purpose (...) is used to define rest or spread Operator.
+
+//Rest Operator is used to merge a list of function arguments into an array.
+//Spread Operator is used to split up an array into individual elements.
+
+//Spread is used in array literals, function calls, and object literals.
+//Rest is used in function parameter definitions and destructuring to collect all the remaining elements into an array.
+
+//Examples
+
+//Rest Operator as destructuring
+let numList = [1, 2, 3, 4, 5];
+let [first, second, ...rest] = numList;
+console.log(first); // 1
+console.log(second); // 2
+console.log(rest); // [3, 4, 5]
+
+
+let [firstNum, ...restNum] = numList;
+console.log(firstNum); // 1
+console.log(restNum); // [2, 3, 4, 5]
+
+//Rest Operator in function parameters
+let sumAll = (...numbers) => {
+    return numbers.reduce((a, b) => a + b);
+}
+
+console.log(sumAll(1, 2, 3, 4, 5)); // 15
+
+
+//Spread Operator in function calls
+let numbers1 = [1, 2, 3, 4];
+console.log(sum(...numbers1)); // 10
+
+//Spread Operator in array literals
+let numbers2 = [0, ...numbers1, 5];
+console.log(numbers2); // [0, 1, 2, 3, 4, 5]
+
+//Spread Operator in object literals - Merge two objects and return a new object
+let person = { name: 'John' };
+let address = { city: 'New York' };
+let details = { ...person, ...address }; // { name: 'John', city: 'New York' }
+
+//As myArray is not nested array, it will not be copied by reference. so hence its deep copy /clone.
+let myArray = [1, 2, 3, 4, 5];
+let myArray1 = [...myArray];
+myArray1.push(6);
+console.log(myArray); // [1, 2, 3, 4, 5]
+console.log(myArray1); // [1, 2, 3, 4, 5, 6] 
+
+//Let's try same with nested array 
+// Adding an element to nestedArray1 will not affect nestedArray because nestedArray1 is a copy of nestedArray but
+// Modiging the nested1 first element will affect the nestedArray because nestedArray1 is a copy of nestedArray and it is a nested array.
+let nestedArray = [[1, 2], [3, 4]];
+let nestedArray1 = [...nestedArray];
+nestedArray.push([5, 6]);
+console.log(nestedArray); // [[1, 2], [3, 4]]
+console.log(nestedArray1); // [[1, 2], [3, 4], [5, 6]]
+
+
+//Let's try deep copy
+
+//Here any change made to the newObject will not affect the copyObject because newObject is a deep copy of copyObject.
+// Also any change made to the newObject.address.city will not affect the copyObject.address.city because newObject.address is a deep copy of copyObject.address.
+let newObject = { name: 'John', address: { city: 'New York' } };
+let newCopyObject = JSON.parse(JSON.stringify(newObject));
+newObject.address.city = 'New Jersey';
+console.log(newObject); // { name: 'John', address: { city: 'New Jersey' } }
+console.log(newCopyObject); // { name: 'John', address: { city: 'New York' } }
+
+
+//Let's see the concept of arguments object in ES5
+//Arguments object is an array-like object that contains all the arguments passed to a function. Meaning you can access all the arguments passed to a function using the arguments object.
+
+//Example
+function sumAllArguments() {
+    let sum = 0;
+    for (let i = 0; i < arguments.length; i++) {
+        sum += arguments[i];
+    }
+    return sum;
+}
+
+console.log(sumAllArguments(1, 2, 3, 4, 5)); // 15
+
+//In this example we haven't not defined any parameters to the function, but we are able to access all the arguments passed to the function using the arguments object.
+//Arguments is in built object in JavaScript that contains all the arguments passed to a function.
+
+
+//Then what is parameters object in ES6?
+//Parameters object is an array-like object that contains all the parameters passed to a function. Meaning you can access all the parameters passed to a function using the parameters object.
+
+//Example
+function sumAllParameters(...numbers) {
+    let sum = 0;
+    for (let i = 0; i < numbers.length; i++) {
+        sum += numbers[i];
+    }
+    return sum;
+}
+
+console.log(sumAllParameters(1, 2, 3, 4, 5)); // 15
+
+
+//Parameters and Arguments refers to  different concepts in JavaScript.
+
+//Parameters are the list of variables in a function definition. Role of parameters is to define what type of data function will accept.
+
+//Arguments are the actual values that are passed to the function when it is called. Role of arguments is to pass the actual values to the function.
+
+//Example
+//function myParam = (a, b) => { } // a, b are parameters
+//myParam(1, 2); // 1, 2 are arguments
+</script>
+</body>
+</html>

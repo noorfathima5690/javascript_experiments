@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Experiments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul, p ul{
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .instructions {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #007BFF;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Experiments</h1>
+
+    <div class="instructions">
+        <p>To view the JavaScript output for each experiment, open the browser's developer tools (usually F12 or right-click -> Inspect) and check the "Console" tab.</p>
+        <p><a href="index.html"> Go Back Listing Page </a></p>
+    </div>
+    <script>
+    //Before jumping into arrow function, let's see what is function and anonymous function are
+
+    //Anonymous function : A function without a name is called anonymous function
+    //Example
+    let add = function(a,b){
+        return a+b;
+    }
+
+    (function(){})() //IIFE - Immediately Invoked Function Expression
+
+    //This is also correct but its an anonymous function
+    // setInterval(function(){
+    //     console.log('Hello');
+    // },1000);
+
+
+    //This is also correct but its an arrow function
+    // setInterval(() => {
+    //     console.log('Hello');
+    // },1000);
+
+    //Function : A function is a block of code that can be called by name written to perform a particular task
+    //The code inside a function is not executed when the function is defined. It is executed when the function is invoked.
+
+    //Example of Normal Or regular function
+    function add(a,b){
+        return a+b;
+    }
+
+    //Function with This keyword (non window object)
+    let obj = {
+        name : 'John',
+        greet : function(){
+            console.log(this); //Object {name: "John", greet: function}
+        }
+    }
+
+    $('.btn').each(function(){
+        console.log(this); //DOM element (not window object)
+    })
+
+    //Arrow function is also called as rocket function
+    //Arrow function : Arrow function allows a short syntax for writing function expressions
+    //Example of Arrow function
+    let add = (a,b) => a+b; //This is the short syntax of writing function expression - Can be used only when there is only one line of code
+    //If there is more than one line of code then we need to use curly braces
+    let add = (a,b) => {
+        return a+b;
+    }
+    //Function with no arguments
+    let greet = () => 'Hello';
+    //Function with single argument
+    let singleArgument = name => `Hello ${name}`;
+    //Function with multiple arguments
+    let multipleArguments = (name,age) => `Hello ${name} your age is ${age}`;
+
+    //Arrow function does not have its own this. The this value of the enclosing lexical scope is used
+    //Example
+    let add = function(){
+        console.log(this); //Window object
+    }
+
+    $('.btn').each(() => {
+        console.log(this); //Window object
+    })
+
+    // Normal Function vs Arrow Function
+
+    // | Feature                     | Normal Function                                      | Arrow Function                                      |
+    // |-----------------------------|------------------------------------------------------|-----------------------------------------------------|
+    // | Syntax                      | function keyword                                     | Arrow (=>) syntax                                    |
+    // | Arguments Binding           | Has its own arguments object                         | Does not have its own arguments object               |
+    // | this Binding                | Binds to the object that calls the function          | Lexically binds to the enclosing context             |
+    // | Constructor                 | Can be used as a constructor                         | Cannot be used as a constructor                      |
+    // | Prototype                   | Has a prototype property                             | Does not have a prototype property                   |
+    // | Usage                       | Suitable for methods, constructors, and dynamic this | Suitable for short functions and callbacks           |
+    // | Call and Apply Methods      | Can use call and apply to change this context        | Cannot use call and apply to change this context     |
+    // | Hoisting                    | Can be hoisted                                       | Cannot be hoisted                                    |
+    // | Return                      | Require explicit return                              | Has Implicit return                                  |
+
+    // Example of Normal Function
+    function normalFunction(a, b) {
+        console.log(arguments); // Has its own arguments object
+        console.log(this); // Binds to the object that calls the function
+        return a + b;
+    }
+
+    // Example of Arrow Function
+    const arrowFunction = (a, b) => {
+        // console.log(arguments); // Does not have its own arguments object
+        console.log(this); // Lexically binds to the enclosing context
+        return a + b;
+    }
+
+
+    //Function constructor is a built-in function that a boilerplate code for creating objects)
+    //example, 
+    //this is have no value untill it is called
+
+    function funcConstructor (a,b){
+        this.a = a;
+        this.b = b;
+        this.sum = function(){
+            return this.a + this.b;
+        }
+    }
+
+    let objfunc = new funcConstructor(2,3);
+    console.log(objfunc.sum()); //5
+    console.log(objfunc); //funcConstructor {a: 2, b: 3, sum: ƒ}
+
+
+    /**
+     * Temporary Dead Zone (TDZ) is a time span between the entering of the scope and the actual variable declaration. Meaning that you cannot access the variable before it is declared.
+     * This is a feature of the let and const keywords.
+     */
+
+    console.log(x1); //ReferenceError: Cannot access 'x1' before initialization It will in TDZ
+    let x1 = 10;
+    console.log(x1); //10 - It will be accessible after declaration
+
+</script>
+</body>
+</html>

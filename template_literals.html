@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Experiments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul, p ul{
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .instructions {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #007BFF;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Experiments</h1>
+
+    <div class="instructions">
+        <p>To view the JavaScript output for each experiment, open the browser's developer tools (usually F12 or right-click -> Inspect) and check the "Console" tab.</p>
+        <p><a href="index.html"> Go Back Listing Page </a></p>
+    </div>
+    <script>
+    //Let's see how template literals work in ES6
+
+    let template = `This is a template literal`; 
+    let multiLine = `This is a template literal
+    which can span multiple lines`; // Template literals support multi-line strings, meaning you need not to use concatenation operator (+) to concatenate strings
+
+    let templateWithSingleQuote = `This is a template literal with single quote 'single quote'`; // You can use single quotes inside template literals without escaping it (\'single quote\')
+    let templateWithDoubleQuote = `This is a template literal with double quote "double quote"`; // You can use double quotes inside template literals without escaping it ("double quote")
+    let templateWithExpression = `This is a template literal with expression ${1+1}`; // You can use expressions inside template literals using ${expression}
+
+    let templateWithFunction = `This is a template literal with function ${function() { return 'function'; }}`;// You can't use function declaration inside template literals, you can only use function expression.This returns a string 'function'
+
+    let templateWithVariable = `This is a template literal with variable ${variable}`; // You can use variables inside template literals
+</script>
+</body>
+</html>

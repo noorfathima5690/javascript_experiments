@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Experiments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul, p ul{
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .instructions {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #007BFF;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Experiments</h1>
+
+    <div class="instructions">
+        <p>To view the JavaScript output for each experiment, open the browser's developer tools (usually F12 or right-click -> Inspect) and check the "Console" tab.</p>
+        <p><a href="index.html"> Go Back Listing Page </a></p>
+    </div>
+    <h2>Asynchronous</h2>
+<script>
+    //Asynchronous code is code that runs in the background and has a callback function that is executed after the code is finished executing
+    //Asynchronous code is non-blocking code
+    //Asynchronous code is used to make the code more efficient and faster
+
+    //Example of synchronous code
+    console.log("Synchronous code : runs one after the other");
+    console.log("1");
+    console.log("2");
+    console.log("3");
+
+    //Example of asynchronous code
+    console.log("Asynchronous code : runs in the background and has a callback function that is executed after the code is finished executing");
+    setTimeout(() => {
+        console.log("4");
+    }, 2000);
+    console.log("5");
+
+    //Example of asynchronous code
+    // console.log("1");
+    // setTimeout(() => {
+    //     console.log("2");
+    // }, 0);
+    // console.log("3");
+
+    //Example of asynchronous code
+    // console.log("1");
+    // setTimeout(() => {
+    //     console.log("2");
+    // }, 2000);
+    // setTimeout(() => {
+    //     console.log("3");
+    // }, 0);
+    // console.log("4");
+
+    //Example of asynchronous code
+    // console.log("1");
+    // setTimeout(() => {
+    //     console.log("2");
+    //     setTimeout(() => {
+    //         console.log("3");
+    //     }, 2000);
+    // }, 2000);
+    // console.log("4");
+
+    //Example of asynchronous code
+    // console.log("1");
+    // setTimeout(() => {
+    //     console.log("2");
+    //     setTimeout(() => {
+    //         console.log("3");
+    //         setTimeout(() => {
+    //             console.log("4");
+    //         }, 2000);
+    //     }, 2000);
+    // }, 2000);
+    // console.log("5");
+
+    //Example of asynchronous code
+    // console.log("1");
+    // setTimeout(() => {
+    //     console.log("2");
+    //     setTimeout(() => {
+    //         console.log("3");
+    //         setTimeout(() => {
+    //             console.log("4");
+    //             setTimeout(() => {
+    //                 console.log("5");
+    //             }, 2000);
+    //         }, 2000);
+    //     }, 2000);
+    // }, 2000);
+    // console.log("6");
+
+    //Example of asynchronous code
+    //
+</script>
+</body>
+</html>

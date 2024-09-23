@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Experiments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul, p ul{
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .instructions {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #007BFF;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Experiments</h1>
+
+    <div class="instructions">
+        <p>To view the JavaScript output for each experiment, open the browser's developer tools (usually F12 or right-click -> Inspect) and check the "Console" tab.</p>
+        <p><a href="index.html"> Go Back Listing Page </a></p>
+    </div>
+<script>
+/**
+ * HashMap / Map & Set are the data structures in JavaScript that are used to store multiple values in a single variable.
+ * Map: Map is a collection of elements where each element is stored as a key-value pair. The key can be of any type and the value can be of any type.
+ * Set: Set is a collection of elements where each element is unique.
+ */
+
+/**
+ *  Map() - Is just a collection of key-value pairs. only difference is the keys can be of any type. (string, number, object, etc) where as in object the key is always a string.
+ *  Map() - The keys are ordered in the order they were added.
+ *  Map() - The keys are iterable.
+ *  Map - Methods 
+ *  - set(key, value) - Adds a key-value pair to the Map object.
+ *  - get(key) - Returns the value of the key.
+ *  - has(key) - Returns a boolean value based on the key is present or not.
+ *  - delete(key) - Deletes the key-value pair from the Map object.
+ *  - clear() - Removes all key-value pairs from the Map object.
+ *  - size - Returns the number of key-value pairs in the Map object.
+ *  - keys() - Returns an iterator of the keys in the Map object.
+ *  - values() - Returns an iterator of the values in the Map object.
+ *  - entries() - Returns an iterator of the key-value pairs in the Map object.
+ */
+
+// Creating a Map
+let map = new Map();
+map.set('name', 'John');
+map.set(1, 'One');
+map.set(true, 'True');
+map.set({}, 'Object');
+console.log(map); //Map(4) {"name" => "John", 1 => "One", true => "True", {…} => "Object"}
+map.get('name'); //John
+let key1 = { name : "John Doe"}
+map.set(key1, 'My friend');
+key1 = null; //key is not garbage collected, because it is used as a key in the map
+map.has(1); //true
+map.delete(true);
+map.size; //3
+map.clear();   //clears all the key-value pairs
+
+// Iterating over Map
+for (let key of map.keys()) {
+    console.log(key);
+}
+
+/**
+ * WeakMap - WeakMap is similar to Map, but the keys are weakly referenced. If there are no references to the keys, then the keys are garbage collected.
+ * Keys have no reference
+ * It is not iterable
+ * Does not have properties or methods like size, clear, keys, values, entries
+ * It has only 4 methods - get, set, has, delete
+ */
+
+let weakMap = new WeakMap();
+let key = {};
+weakMap.set(key, 'Value');
+key = null; //key is garbage collected
+console.log(weakMap.get(key)); //undefined
+
+
+/**
+ * Set - Set is a collection of unique elements. It stores only unique values. It does not allow duplicate values.
+ * Similar to an array, but the hold any unique data type.
+ * It is iterable and the values are ordered in the order they were added.
+ * It has properties and methods like size, clear, keys, values, entries, add, delete, has
+ */
+
+let set = new Set();
+set.add(1);
+set.add(2);
+set.add(3);
+set.add(1); //duplicate value, so it will not be added
+set.size; //3
+set.delete(2); //removes the value 2
+set.has(3); //true
+set.add({name: 'John'});
+
+// Iterating over Set
+for (let value of set) {
+    console.log(value);
+}
+
+
+/**
+ * WeakSet - WeakSet is similar to Set, but the values are weakly referenced. If there are no references to the values, then the values are garbage collected.
+ * Values have no reference
+ * It is not iterable
+ * Does not have properties or methods like size, clear, keys, values, entries
+ * It has only 4 methods - add, has, delete
+ */
+
+let weakSet = new WeakSet();
+let harry = {name: 'Harry'};
+let sherry = {name: 'Sherry'};
+weakSet.add(harry);
+weakSet.add(sherry);
+harry = null; //garbage collected
+console.log(weakSet.has(harry)); //false
+console.log(weakSet.has(sherry)); //true
+
+/**
+ * Garbage-collected means that an object in memory that is no longer in use (unreachable) is automatically cleaned up by the system, freeing up memory.
+ * avaScript handles this process automatically, so developers don’t have to worry about manually managing memory.
+ * WeakMap and WeakSet are designed to hold weak references to objects, allowing those objects to be garbage-collected if there are no other strong references to them.
+ */
+</script>
+</body>
+</html>

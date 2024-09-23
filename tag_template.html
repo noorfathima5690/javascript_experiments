@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Experiments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul, p ul{
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .instructions {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #007BFF;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Experiments</h1>
+
+    <div class="instructions">
+        <p>To view the JavaScript output for each experiment, open the browser's developer tools (usually F12 or right-click -> Inspect) and check the "Console" tab.</p>
+        <p><a href="index.html"> Go Back Listing Page </a></p>
+    </div>
+    <script>
+    //Lets see how tag template literals work in ES6
+    //Issue with template literals is that we can't use functions in them
+    // let let templateWithFunction = `This is a template literal with function ${function() { return 'function'; }}`; // This will throw an error
+
+    //Tag template literals are used to parse template literals with a function
+    let buildTemplate = (strings, ...values) => {
+        return strings[0] + values.join('') + strings[1];
+    };
+
+    const lines = ['Para 1','para 2', 'para 3'];
+
+    let template = buildTemplate`This is a template literal with function<p>${lines}</p>`;
+    console.log(template); // This is a template literal with function<p>Para 1,para 2,para 3</p>
+
+
+    //Examples
+
+    let city = 'New York';
+    let userId = 1;
+    let command = "Select *";
+    let table = "users";
+    let where = [
+        `uid = ${1+1}`,
+        ` OR city = ${city}`
+    ]
+
+    let tagTemplate = query`${command} from ${table} where ${where}`
+
+    function query(strings, ...values) {
+        console.log(strings);
+        console.log(values);
+        let finalQuery = ` ${values[0]} ${strings[1]} ${values[1]} ${strings[2]} ${values[2].join('')}`
+        console.log(finalQuery)
+    }
+
+</script>
+</body>
+</html>

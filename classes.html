@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Experiments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul, p ul{
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .instructions {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #007BFF;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Experiments</h1>
+
+    <div class="instructions">
+        <p>To view the JavaScript output for each experiment, open the browser's developer tools (usually F12 or right-click -> Inspect) and check the "Console" tab.</p>
+        <p><a href="index.html"> Go Back Listing Page </a></p>
+    </div>
+    <script>
+/*  Classes are a template for creating objects. 
+    They encapsulate data with code to work on that data. 
+    Classes in JS are built on prototypes but also have some syntax and semantics that are not shared with ES5 class-like semantics.
+    Classes are in fact "special functions", and just as you can define function expressions and function declarations, 
+    The class syntax has two components: class expressions and class declarations.
+    Constructor method is a special method, It get initialized when a new instance of an object is created.
+    We don't need to use the function keyword to create a functions inside the class.
+    We don't declared variables using public, private, protected keywords unlike other programming languages.
+    We can use the static keyword to create a static method. which is a method that is called on the class itself rather than on an instance of the class.
+    get and set keywords are used to define a getter and a setter for an object. Which allows us to define a function to execute when the property is accessed.
+    Use # for true private properties.
+    Use _ as a naming convention to indicate that a property should be treated as private, but it remains accessible outside the class.\
+    private properties cannot be accessed outside the class.
+*/
+
+//Let's create a class called  'Person' with a constructor method that takes in 3 parameters
+
+class Person {
+
+/**
+ * 
+ * @param {*} name 
+ * @param {*} age 
+ * @param {*} address 
+ * Static methods cannot used inside the constructor method.
+ */
+/**
+ * Static properties cannot be directly accessed on instances of the class. Instead, they're accessed on the class itself.
+ * Static keyword is used to create a static method or property.
+ */
+static height = 5.7; //Static variable
+constructor (name, age, address) {
+    this.name = name;
+    this.age = age;
+    this.address = address;
+}
+
+//Method to display the details of the person
+displayDetails() {
+    console.log(`Name: ${this.name}, Age: ${this.age}, Address: ${this.address}`);
+}
+
+get personName() {
+    return this.name;
+}
+
+set personName(name) {
+    this.name = name;
+}
+
+static getHeight() {
+    return this.height;
+}
+
+/**
+ * @returns Cannot access the static variable using 'this' keyword. We need to use the class name to access the static variable.
+ */
+accessedHeight() {
+    return Person.height;
+}
+}
+
+//Creating an object of the class 'Person'
+let person1 = new Person('John', 25, 'New York');
+console.log(person1); //Output: Person { name: 'John', age: 25, address: 'New York' }
+//Accessing getter and setter methods, We don't need to use the parenthesis to access the getter method.
+console.log(person1.personName); //Output: John
+person1.personName = 'Alex'; //Setting the name using the setter method
+console.log(person1.displayDetails()); //Output: Name: Alex, Age: 25, Address: New York
+
+//Let's see how to create a static variable and method in a class
+console.log(Person.getHeight()); //Output: 5.7
+console.log(person1.accessedHeight()); //Output: 5.7
+
+//Lets see how to access private properties and methods
+
+class Personn {
+#name = 'John'; //Private property
+#age = 25; //Private property
+
+//Private method
+#displayDetails() {
+    console.log(`Name: ${this.#name}, Age: ${this.#age}`);
+}
+
+//Public method to access the private method
+display() {
+    this.#displayDetails();
+}
+}
+
+let person2 = new Personn();
+console.log(person2); //Output: Personn {}
+console.log(person2.display()); //Output: Name: John, Age: 25
+console.log(personn2.displayDetails()); //Output: TypeError: person2.displayDetails is not a function as cannot access the private method outside the class.
+console.log(Personnn.displayDetails()); //Output: TypeError: Personn.displayDetails is not a function as cannot access by using class object.
+
+
+//Let's create to show case encapsulation in classes
+/**
+* Here you can see that the balance property is private and cannot be accessed outside the class.
+* We have methods to deposit, withdraw and display the balance.
+*/
+class Account {
+#balance = 100; //Private property
+
+//Method to deposit the amount
+deposit(amount) {
+    this.#balance += amount;
+    console.log(`Amount deposited: ${amount}`);
+}
+
+//Method to withdraw the amount
+withdraw(amount) {
+    if(this.#balance < amount) {
+        console.log('Insufficient balance');
+    } else {
+        this.#balance -= amount;
+        console.log(`Amount withdrawn: ${amount}`);
+    }
+}
+
+//Method to display the balance
+displayBalance() {
+    console.log(`Current balance: ${this.#balance}`);
+}
+
+getBalance() {
+    return this.#balance;
+}
+}
+
+
+//Let's the Inheritance in classes
+/**
+* Inheritance is a mechanism where a new class is derived from an existing class. 
+* The derived class inherits features from the base class, adding new features to it.
+* The class which is inherited is called the base class and the class which inherits is called the derived class.
+* We use the 'extends' keyword to inherit the base class.
+* We use the 'super' keyword to call the constructor of the base class.
+*/
+
+class BankAccount extends Account {
+#interestRate = 0; //Private property
+
+constructor(interestRate) {
+    super();
+    this.#interestRate = interestRate;
+    this.deposit(balance);
+}
+
+//Method to calculate the interest
+/**
+ * As balance is a private property, we cannot access it outside the class. (its true private property)
+ */
+calculateInterest() {
+    // let interest = this.balance * this.#interestRate / 100; // This won't work
+    let interest = this.getBalance() * this.#interestRate / 100;
+    console.log(`Interest calculated: ${interest}`);
+}
+}
+
+console.log(new BankAccount(5)); //BankAccount {#balance: 200, #interestRate: 5}
+console.log(new BankAccount(5).calculateInterest()); //Output: Interest calculated: 10
+
+</script>
+</body>
+</html>

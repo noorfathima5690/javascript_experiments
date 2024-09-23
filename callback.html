@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Experiments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul, p ul{
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .instructions {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #007BFF;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Experiments</h1>
+
+    <div class="instructions">
+        <p>To view the JavaScript output for each experiment, open the browser's developer tools (usually F12 or right-click -> Inspect) and check the "Console" tab.</p>
+        <p><a href="index.html"> Go Back Listing Page </a></p>
+    </div>
+    <h2>Callback Function</h2>
+<script>
+    //Callback function is a function that is passed as an argument to another function.
+    //Callback function is executed after another function has finished executing
+
+    //Let's take an example of a function that takes a callback function as an argument
+    // function printUperCaseName(name, callback) {
+    //     let upperCaseName = name.toUpperCase();
+    //     callback(upperCaseName);
+    // }
+
+    // printUperCaseName("John", function (name) {
+    //     console.log("==========This console will be printed after the printUperCaseName function is executed==========", name);
+    // });
+
+    let printUperCaseName = function(t){
+        return t.toUpperCase();
+    }
+
+    let printName = function(name, callback){
+        let upperCaseName = callback(name);
+        console.log(upperCaseName);
+    }
+
+    //printName("John", printUperCaseName);
+
+
+    //shorter version of the above code
+    // printUperCaseName("John", (name) => {
+    //     console.log("==========This console will be printed after the printUperCaseName function is executed==========", name);
+    // });
+
+
+</script>
+</body>
+</html>

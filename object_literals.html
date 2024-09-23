@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Experiments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul, p ul{
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .instructions {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #007BFF;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Experiments</h1>
+
+    <div class="instructions">
+        <p>To view the JavaScript output for each experiment, open the browser's developer tools (usually F12 or right-click -> Inspect) and check the "Console" tab.</p>
+        <p><a href="index.html"> Go Back Listing Page </a></p>
+    </div>
+    <script>
+    //Object : Is a type of variable / data structure that can store multiple values.(key-value pair)
+    //Object literals are defined using curly braces {}.
+    //Object Can  be defined in 5 ways:
+    //1. Object literals
+    //2. Using new keyword
+    //3. Using Object constructor i.e. Object.create() method
+    //4. Copy object using Object.assign() method or spread operator
+    //5. fromEntries() method
+
+    //Lets see one by one
+    //1. Object literals (Also know object initializer) - Most common way to create object
+    let objLiteral = { name: 'John', age: 30, city: 'New York' }; // Object literal
+    let objLiteral1 = { name: 'John', age: 30, city: 'New York', greet: function() { return 'Hello'; } }; // Object literal with method
+    let objLiteralWithoutData = {}; // Empty object
+    objLiteralWithoutData.name = 'John'; // Adding properties to object
+
+    let firstname = 'John';
+    let age = 30;
+    let objLiteralWithSameKeyName = {
+        firstname,
+        age,
+        amethod() {
+            return 'Hello';
+        }
+    }
+    console.log(objLiteralWithSameKeyName.firstname); // John
+
+    //2. Using new keyword
+    let objNew = new Object(); // Empty object
+    objNew.name = 'John'; // Adding properties to object
+    objNew.age = 30;
+
+
+    //3. Using Object constructor i.e. Object.create() method - null is required to create empty object (otherwise will get type error stating prototype should be an object or null)
+    let objCreate = Object.create(null); // Empty object
+    objCreate.name = 'John'; // Adding properties to object
+    objCreate.age = 30;
+
+    //4. Copy object using Object.assign() method or spread operator - deep copy as not nested object
+    let obj = { name: 'John', age: 30, city: 'New York' };
+    let objCopy = Object.assign({}, obj); // Copy object using Object.assign() method
+    let objCopy1 = { ...obj }; // Copy object using spread operator
+    console.log(obj); // { name: 'John', age: 30, city: 'New York' }
+    console.log(objCopy); // { name: 'John', age: 30, city: 'New York' }
+    console.log(objCopy1); // { name: 'John', age: 30, city: 'New York' }
+    let objCopy2 = obj;
+    obj.city = "India";
+    console.log(obj); // { name: 'John', age: 30, city: 'India' } - original object is changed
+
+
+    //5. fromEntries() method - convert array to object
+    let arr = [['name', 'John'], ['age', 30], ['city', 'New York']];
+    let objFromEntries = Object.fromEntries(arr);
+    console.log(objFromEntries); // { name: 'John', age: 30, city: 'New York' }
+
+
+    //Lets see how to access object properties
+    //Can accessed used 3 ways:
+    //1. Dot notation
+    //2. Bracket notation
+    //3. Object Expression
+
+    //1. Dot notation
+    console.log(objLiteral.name); // John
+
+    //2. Bracket notation
+    console.log(objLiteral['name']); // John
+
+    //3. Object Expression
+    let key = 'name';
+    console.log(objLiteral[key]); // John
+
+
+    // Copies properties from a source object to a target object
+    Object.assign(target, source)
+
+    // Creates an object from an existing object
+    Object.create(object)
+
+    // Returns an array of the key/value pairs of an object
+    Object.entries(object)
+
+    // Creates an object from a list of keys/values
+    Object.fromEntries()
+
+    // Returns an array of the keys of an object
+    Object.keys(object)
+
+    // Returns an array of the property values of an object
+    Object.values(object)
+
+    // Groups object elements according to a function
+    Object.groupBy(object, callback)
+    //example'
+    let obj = { name: 'John', age: 30, city: 'New York' };
+    console.log(Object.keys(obj)); // [ 'name', 'age', 'city' ]
+    console.log(Object.values(obj)); // [ 'John', 30, 'New York' ]
+    console.log(Object.entries(obj)); // [ [ 'name', 'John' ], [ 'age', 30 ], [ 'city', 'New York' ] ]
+    console.log(Object.fromEntries(Object.entries(obj))); // { name: 'John', age: 30, city: 'New York' }
+    console.log(Object.create(obj)); // {} - Empty object
+    console.log(Object.assign({}, obj)); // { name: 'John', age: 30, city: 'New York' }
+
+    const data = [
+        { id: 1, category: 'fruit', name: 'apple' },
+        { id: 2, category: 'vegetable', name: 'carrot' },
+        { id: 3, category: 'fruit', name: 'banana' },
+        { id: 4, category: 'vegetable', name: 'spinach' },
+        { id: 5, category: 'fruit', name: 'grape' }
+    ];
+    
+    // Using Object.groupBy (Proposed Not widely used)
+    const groupedData = Object.groupBy(data, item => item.category);
+    console.log(groupedData); 
+    // {
+    //     fruit: [
+    //       { id: 1, category: 'fruit', name: 'apple' },
+    //       { id: 3, category: 'fruit', name: 'banana' },
+    //       { id: 5, category: 'fruit', name: 'grape' }
+    //     ],
+    //     vegetable: [
+    //       { id: 2, category: 'vegetable', name: 'carrot' },
+    //       { id: 4, category: 'vegetable', name: 'spinach' }
+    //     ]
+    //   }
+</script>
+</body>
+</html>
+
+
+
+

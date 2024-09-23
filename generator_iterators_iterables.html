@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Experiments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul, p ul{
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .instructions {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #007BFF;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Experiments</h1>
+
+    <div class="instructions">
+        <p>To view the JavaScript output for each experiment, open the browser's developer tools (usually F12 or right-click -> Inspect) and check the "Console" tab.</p>
+        <p><a href="index.html"> Go Back Listing Page </a></p>
+    </div>
+    <script>
+function* aGenerator(){
+    console.log("I ran first");
+    console.log("Running until it pause")
+    yield 1;
+    console.log("I ran in the end");
+}
+
+const gen = aGenerator();
+console.log(gen);
+gen.next();
+gen.next();
+
+
+
+function* paginationResult(data, pageSize){
+    for (let i= 0; i< data.length; i+=pageSize){
+        yield data.slice(i, i+pageSize);
+    }
+}
+const largeData = {
+  "users": [
+    {
+      "id": 1,
+      "name": "Alice Johnson",
+      "email": "alice.johnson@example.com",
+      "age": 28,
+      "city": "New York"
+    },
+    {
+      "id": 2,
+      "name": "Bob Smith",
+      "email": "bob.smith@example.com",
+      "age": 34,
+      "city": "Los Angeles"
+    },
+    {
+      "id": 3,
+      "name": "Carol White",
+      "email": "carol.white@example.com",
+      "age": 25,
+      "city": "Chicago"
+    },
+    {
+      "id": 4,
+      "name": "David Brown",
+      "email": "david.brown@example.com",
+      "age": 40,
+      "city": "Houston"
+    },
+    {
+      "id": 5,
+      "name": "Emma Davis",
+      "email": "emma.davis@example.com",
+      "age": 22,
+      "city": "Phoenix"
+    }
+  ],
+  "posts": [
+    {
+      "postId": 101,
+      "userId": 1,
+      "title": "JavaScript Generators",
+      "content": "Generators in JavaScript provide a unique way to handle asynchronous operations."
+    },
+    {
+      "postId": 102,
+      "userId": 2,
+      "title": "React vs Angular",
+      "content": "Both React and Angular are popular frameworks, but each has its strengths and weaknesses."
+    },
+    {
+      "postId": 103,
+      "userId": 3,
+      "title": "Node.js Performance Tips",
+      "content": "Optimizing Node.js applications can significantly improve performance and scalability."
+    },
+    {
+      "postId": 104,
+      "userId": 4,
+      "title": "Understanding REST APIs",
+      "content": "REST APIs are a core concept in modern web development. Here's a guide on how to build them."
+    },
+    {
+      "postId": 105,
+      "userId": 5,
+      "title": "Introduction to MongoDB",
+      "content": "MongoDB is a NoSQL database that provides flexibility and scalability for data management."
+    }
+  ],
+  "comments": [
+    {
+      "commentId": 1001,
+      "postId": 101,
+      "userId": 2,
+      "comment": "Great post! I find generators very useful in async workflows."
+    },
+    {
+      "commentId": 1002,
+      "postId": 101,
+      "userId": 3,
+      "comment": "I agree, generators make managing state easier."
+    },
+    {
+      "commentId": 1003,
+      "postId": 102,
+      "userId": 4,
+      "comment": "I'm more of an Angular fan, but React is very popular in the industry."
+    },
+    {
+      "commentId": 1004,
+      "postId": 103,
+      "userId": 5,
+      "comment": "Thanks for the tips on Node.js! This really helped me."
+    },
+    {
+      "commentId": 1005,
+      "postId": 104,
+      "userId": 1,
+      "comment": "REST APIs are crucial, especially for mobile and web applications."
+    },
+    {
+      "commentId": 1006,
+      "postId": 105,
+      "userId": 2,
+      "comment": "MongoDB is great, but I still prefer SQL for some applications."
+    }
+  ]
+}
+
+let dataGen1 = paginationResult(largeData.users, 2);
+console.log(dataGen1.next().value); // First set of results
+console.log(dataGen1.next().value); // Second set of results
+
+
+
+let aString = "hi";
+let aNewString = new String("Hi");
+
+aNewString[Symbol.iterator] = function(){
+    return {
+          counter:0,
+          allDone:false,
+          next: function(){
+              if(!this.allDone){
+                   this.counter++;
+                  if(this.counter === aNewString.length){
+                      this.allDone = true
+                  }
+                   return {
+                      value:`You didn't get what you expected ${this.counter}`,
+                      done: false
+                  }
+              }else {
+                   return {
+                      done: true
+                  }
+              }
+          }
+    }
+}
+
+for(letter of aNewString){
+    console.log("========", letter)
+}
+</script>
+</body>
+</html>
